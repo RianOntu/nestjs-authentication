@@ -33,6 +33,7 @@ let GoogleSrategy = class GoogleSrategy extends passport_1.PassportStrategy(pass
             picture: photos[0].value,
             accessToken
         };
+        console.log(profile);
         done(null, user);
     }
 };
