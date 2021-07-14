@@ -1,6 +1,8 @@
-import * as mongoose from 'mongoose';
-
-export const UserSchema=new mongoose.Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserSchema = void 0;
+const mongoose = require("mongoose");
+exports.UserSchema = new mongoose.Schema({
     name: {
         type: String,
     },
@@ -16,13 +18,5 @@ export const UserSchema=new mongoose.Schema({
         minlength: 8,
         maxlength: 100
     }
-}, { timestamps: true })
-
-export interface User extends mongoose.Document{
-   
-    
-    id:string;
-    name:string;
-    email:string;
-    password:string;
-} 
+}, { timestamps: true });
+//# sourceMappingURL=user.model.js.map

@@ -5,22 +5,46 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
+const mongoose_1 = require("mongoose");
+const mongoose_2 = require("@nestjs/mongoose");
 let AppService = class AppService {
+    constructor(userModel) {
+        this.userModel = userModel;
+    }
     googleLogin(req) {
         if (!req.user) {
             return 'No user from google';
         }
-        return {
-            message: 'User information from google',
-            user: req.user.email
-        };
+        return `<h1 style="text-align:center">Welcome ${req.user.firstName} ${req.user.lastName}</h1>`;
+    }
+    async addUser(name, email) {
+        let user = await this.userModel.findOne({ email: email });
+        if (user) {
+            console.log("user exists");
+        }
+        else {
+            const newuser = new this.userModel({
+                name: name,
+                email: email
+            });
+            const result = await newuser.save();
+            return result;
+        }
     }
 };
 AppService = __decorate([
-    common_1.Injectable()
+    common_1.Injectable(),
+    __param(0, mongoose_2.InjectModel('User')),
+    __metadata("design:paramtypes", [mongoose_1.Model])
 ], AppService);
 exports.AppService = AppService;
 //# sourceMappingURL=app.service.js.map

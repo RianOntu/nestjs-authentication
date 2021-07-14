@@ -22,6 +22,7 @@ let AppController = class AppController {
     }
     async googleAuth(req) { }
     async googleAuthRedirect(req) {
+        this.appService.addUser(req.user.firstName, req.user.email);
         return this.appService.googleLogin(req);
     }
 };

@@ -11,11 +11,13 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const google_strategy_1 = require("./google.strategy");
+const mongoose_1 = require("@nestjs/mongoose");
+const user_model_1 = require("./user.model");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [],
+        imports: [mongoose_1.MongooseModule.forRoot(`mongodb+srv://RianOntu:${process.env.db_password}@cluster0.qioqq.mongodb.net/nestjs-authentication?retryWrites=true&w=majority`), mongoose_1.MongooseModule.forFeature([{ name: "User", schema: user_model_1.UserSchema }])],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, google_strategy_1.GoogleSrategy],
     })

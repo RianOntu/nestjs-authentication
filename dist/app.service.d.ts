@@ -1,6 +1,8 @@
+import { Model } from 'mongoose';
+import { User } from './user.model';
 export declare class AppService {
-    googleLogin(req: any): "No user from google" | {
-        message: string;
-        user: any;
-    };
+    private readonly userModel;
+    googleLogin(req: any): string;
+    constructor(userModel: Model<User>);
+    addUser(name: string, email: string): Promise<User>;
 }
