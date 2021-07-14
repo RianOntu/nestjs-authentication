@@ -21,7 +21,7 @@ let AppController = class AppController {
         this.appService = appService;
     }
     async googleAuth(req) { }
-    async googleAuthRedirect(req, res) {
+    async googleAuthRedirect(req) {
         return this.appService.googleLogin(req);
     }
 };
@@ -34,12 +34,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "googleAuth", null);
 __decorate([
-    common_1.Get('auth/google/redirect'),
+    common_1.Get('/google/redirect'),
     common_1.UseGuards(passport_1.AuthGuard('google')),
     __param(0, common_1.Req()),
-    __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "googleAuthRedirect", null);
 AppController = __decorate([
